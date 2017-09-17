@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cduestc.service.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.cduestc.service.entity.User">
+        <id column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="SMALLINT"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
+        <result column="last_login_date" property="lastLoginDate"
+                jdbcType="DATE"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="address" property="defaultAddress"
+                jdbcType="DATE"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="SMALLINT"/>
+        <result column="academy" property="academy" jdbcType="VARCHAR"/>
+        <result column="qq" property="qq" jdbcType="VARCHAR"/>
+        <result column="weixin" property="weiXin" jdbcType="VARCHAR"/>
+        <result column="campus_id" property="campusId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectType" resultType="Short">
+        SELECT type
+        FROM users
+        WHERE
+            phone = #{phone,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        SELECT
+        users.phone,
+        type,
+        nickname,
+        img_url,
+        last_login_date,
+        create_time,
+        address,
+        token
+        FROM users
+        LEFT JOIN receiver ON
+        users.phone = receiver.phone_id
+        AND
+        receiver.tag = 0
+        WHERE
+        1 = 1
+        <if test="search != null and search !=''">
+            and (nickname like #{search,jdbcType=VARCHAR} or
+            users.phone like
+            #{search,jdbcType=VARCHAR})
+        </if>
+        <if test="sort != null">
+            order by ${sort}
+        </if>
+        <if test="sort != null and order != null">
+            ${order}
+        </if>
+        <if test="offset != null and limit != null">
+            limit #{offset,jdbcType=INTEGER} ,
+            #{limit,jdbcType=INTEGER}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cduestc.service.dao.AppKeyMapper">
+
+    <resultMap id="sellerMap" type="com.cduestc.service.entity.AppKey">
+        <result column="appKey" property="appKey" jdbcType="VARCHAR"/>
+        <result column="secrect" property="secrect" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectKey" resultType="String">
+        SELECT secrect
+        FROM app_key
+        WHERE
+            secrect = #{secrect,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

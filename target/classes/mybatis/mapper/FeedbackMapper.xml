@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cduestc.service.dao.FeedbackMapper">
+    <resultMap id="feedbackMap" type="com.cduestc.service.entity.Feedback">
+        <result column="phone_id" property="phoneId" jdbcType="VARCHAR"/>
+        <result column="suggestion" property="suggestion" jdbcType="VARCHAR"/>
+        <result column="date" property="date" jdbcType="DATE"/>
+    </resultMap>
+    <select id="selectFeedbackList" resultMap="feedbackMap">
+        SELECT
+            phone_id,
+            suggestion,
+            date
+        FROM
+            feedback
+        WHERE
+            campus_id = #{campusId,jdbcType=INTEGER}
+    </select>
+
+</mapper>
