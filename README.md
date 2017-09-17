@@ -7,10 +7,14 @@
 
 界面基于BootStrap，图标采用较为开放的
 
+
 后端
 Spring Frramework       容器            http://projects.spring.io/spring-framework/
+
 SpringMVC               MVC             http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#mvc
+
 Apache Shiro            安全框架         http://shiro.apache.org/
+
 Druid                   数据库连接池     https://github.com/alibaba/druid
 Swagger                 接口测试框架     http://swagger.io/
 MybatisPlus             ORM框架         http://baomidou.oschina.io/mybatis-plus-doc/#/
